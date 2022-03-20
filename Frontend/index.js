@@ -1,13 +1,13 @@
+/* eslint-disable prettier/prettier */
 /**
  * @format
  */
 import React from 'react';
-import {AppRegistry} from 'react-native';
+import { AppRegistry } from 'react-native';
 import App from './App';
-import {name as appName} from './app.json';
-import {BrowserRouter as Router} from 'react-router-dom';
-import {Provider} from 'react-redux';
-import store from './src/component/store';
+import { name as appName } from './app.json';
+import { Provider } from 'react-redux';
+import store from './src/redux/store';
 
 const Container = () => {
   return (

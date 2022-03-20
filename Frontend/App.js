@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -8,14 +9,10 @@
 
 import React, { useState } from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
   useColorScheme,
   StatusBar,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -121,45 +118,5 @@ const App = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  login: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontSize: 44,
-    fontWeight: '600',
-    textAlign: 'center',
-    marginTop: 100,
-    marginBottom: 30,
-    color: '#fff',
-  },
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-    backgroundColor: '#fff',
-    color: '#000',
-  },
-  sectionTitle: {
-    fontSize: 24,
-    color: '#fff',
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: '#fff',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;

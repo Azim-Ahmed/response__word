@@ -1,36 +1,23 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable prettier/prettier */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
-import React, { useState } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useEffect, useState } from 'react';
 import {
-  SafeAreaView,
   ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
   useColorScheme,
   View,
   Image,
   TouchableOpacity,
-  TextInput,
 } from 'react-native';
 import Autocomplete from 'react-native-autocomplete-input';
 import { useDispatch, useSelector } from 'react-redux';
-
-import image1 from '../image/loginBg.png';
-// import profile from '../image/profile.jpg';
 import avatar from '../image/avatar.png';
-import settings from '../image/Settings.png';
-import amico from '../image/amico.png';
-import IconRight from '../image/IconRight.png';
 import bus from '../image/bus.png';
-import contact from '../image/Contact.png';
-import History from '../image/history.png';
 import HomeImg from '../image/Home.png';
-import ProfileImg from '../image/Profile.png';
-import QrCode from '../image/QrCode.png';
-import generateQr from '../image/generateQr.png';
 import FareLogo from '../image/FareLogo.png';
 import Location from '../image/location.png';
 import Arrow from '../image/Arrow.png';
@@ -38,16 +25,15 @@ import Seat from '../image/Seat.png';
 
 // -------------------Dimension Import------------------
 import { Dimensions } from 'react-native';
+import { getAllBus } from '../../redux/actions';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const index = ({ navigation }) => {
-  const userauth = useSelector(state => state.userAuth);
+  const buses = useSelector(state => state.buses);
   const isDarkMode = useColorScheme() === 'dark';
-  const [loggedIn, setLoggedIn] = useState({});
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? '#ffff' : '#ffff',
-  };
+  console.log('sssssssssssssssssssssssssss', buses.buses);
+  const dispatch = useDispatch();
   const diveSitesDat = [
     {
       'OBJECTID': 1,
@@ -135,14 +121,18 @@ const index = ({ navigation }) => {
   const [selectedValue, setSelectedValue] = useState({});
   const [selectedFirstValue, setSelectedFirstValue] = useState({});
 
-  const userFormLogin = async () => {
-    const loggedIn = await AsyncStorage.getItem('userData');
-    setLoggedIn(JSON.parse(loggedIn));
-    if (userauth.authenticate) {
-      await AsyncStorage.setItem('userData', JSON.stringify(userauth));
-    } else {
-      null;
-    }
+  // const userFormLogin = async () => {
+  //   const loggedIn = await AsyncStorage.getItem('userData');
+  //   setLoggedIn(JSON.parse(loggedIn));
+  //   if (userauth.authenticate) {
+  //     await AsyncStorage.setItem('userData', JSON.stringify(userauth));
+  //   }
+  // };
+  useEffect(() => {
+    dispatch(getAllBus());
+  }, []);
+  const handleShowDetailsItem = () => {
+    console.log({ selectedValue, selectedFirstValue });
   };
   const findFilm = (text) => {
     if (text) {
@@ -176,7 +166,7 @@ const index = ({ navigation }) => {
       //  setSelectedValue(null)
     }
   };
-  userFormLogin();
+  // userFormLogin();
   // console.log('gg', loggedIn);
   return (
     <>
@@ -331,7 +321,9 @@ const index = ({ navigation }) => {
             </View>
           </View>
           <View>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => handleShowDetailsItem()}
+            >
               <Text
                 style={{
                   color: 'white',
@@ -342,6 +334,7 @@ const index = ({ navigation }) => {
                   flexWrap: 'wrap',
                   width: 100,
                   backgroundColor: 'gray',
+                  borderRadius: 8,
                   marginLeft: 60,
                   padding: 10,
                   textAlign: 'center',
