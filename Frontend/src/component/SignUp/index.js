@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import type { Node } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   SafeAreaView,
@@ -14,7 +13,7 @@ import {
   Button,
   ImageBackground,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -52,94 +51,91 @@ const index = ({ navigation }) => {
   return (
     <>
       {/* <StatusBar barStyle={isDarkMode ? '#fff' : 'dark-content'} /> */}
-      <SafeAreaView style={{
-
-        height: '100%',
-        marginVertical: 35,
-        backgroundColor: 'white',
-
-      }}>
-        <View style={{
-
-          // backgroundColor: 'gray',
-          height: '50%',
-          overflow: 'hidden'
+      <SafeAreaView
+        style={{
+          height: '100%',
+          marginVertical: 35,
+          backgroundColor: 'white',
         }}>
+        <View
+          style={{
+            // backgroundColor: 'gray',
+            height: '50%',
+            overflow: 'hidden',
+          }}>
           <Image
             source={Logo}
             resizeMode="contain"
             style={{
-
               width: '100%',
               // height: 50,
               // aspectRatio: 1,
               alignItems: 'flex-start',
               // marginTop: ,
               // marginRight: 18,
-
-
             }}
           />
         </View>
 
-
-        <View style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'center'
-        }}>
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+          }}>
           <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-            <Text style={{
-              color: 'white',
-              backgroundColor: 'orange',
-              fontSize: 18,
+            <Text
+              style={{
+                color: 'white',
+                backgroundColor: 'orange',
+                fontSize: 18,
 
-              marginRight: 10,
-              fontWeight: '700',
-              paddingVertical: 5,
-              paddingHorizontal: 15,
-              borderRadius: 7,
-            }} >
+                marginRight: 10,
+                fontWeight: '700',
+                paddingVertical: 5,
+                paddingHorizontal: 15,
+                borderRadius: 7,
+              }}>
               SignUp
             </Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
-            <Text style={{
-              color: 'white',
-              backgroundColor: 'orange',
-              fontSize: 18,
+            <Text
+              style={{
+                color: 'white',
+                backgroundColor: 'orange',
+                fontSize: 18,
 
-              fontWeight: '700',
-              padding: 5,
-              borderRadius: 7,
-
-            }}>
+                fontWeight: '700',
+                padding: 5,
+                borderRadius: 7,
+              }}>
               Passenger
             </Text>
           </TouchableOpacity>
-
         </View>
-        <View style={{
-          display: 'flex',
-          flexDirection: 'row',
-          marginTop: 10,
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}>
-          <Text style={{
-            color: '#0F254F',
-            fontSize: 12,
-            fontWeight: '700',
-            marginRight: 5.
-
-          }}>Already a Member?</Text>
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            marginTop: 10,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Text
+            style={{
+              color: '#0F254F',
+              fontSize: 12,
+              fontWeight: '700',
+              marginRight: 5,
+            }}>
+            Already a Member?
+          </Text>
 
           <TouchableOpacity onPress={() => navigation.navigate('signin')}>
             <Text style={{ color: 'red', fontWeight: '700' }}>Sign in</Text>
           </TouchableOpacity>
         </View>
-
-
       </SafeAreaView>
     </>
   );

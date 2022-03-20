@@ -1,0 +1,121 @@
+            <View style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <Autocomplete
+                autoCorrect={false}
+                listStyle={styles.acListStyle}
+                inputContainerStyle={styles.acTextContainerStyle}
+                style={styles.acTextContainerStyle}
+                placeholder="Search Location"
+                data={filteredFilms}
+                defaultValue={selectedValue?.Name}
+                onChangeText={text => findFilm(text)}
+                flatListProps={{
+                  style: ({
+                    borderBottomLeftRadius: 10,
+                    borderBottomRightRadius: 10,
+                    backgroundColor: '#aaa9aa',
+
+                  }),
+                  keyExtractor: ((item, index) => item.OBJECTID.toString()),
+                  renderItem: ({ item, i }) => (
+                    <TouchableOpacity
+                      style={{ flexGrow: 1, backgroundColor: '#aaa9a8', borderRadius: 10 }}
+                      onPress={() => {
+                        setSelectedValue(item);
+                        setFilteredFilms([]);
+                      }}>
+                      <Text style={styles.itemText}>
+                        {item.Name}
+                      </Text>
+                    </TouchableOpacity>
+                  ),
+                }}
+              />
+
+              <Autocomplete
+                autoCorrect={false}
+                listStyle={styles.acListStyle}
+                // inputContainerStyle={styles.acTextContainerStyle}
+                style={{
+                  padding: 10,
+                  paddingHorizontal: 5,
+                  marginTop: 40,
+                  borderRadius: 10,
+                  color: 'black',
+                  backgroundColor: 'red',
+                }}
+                inputContainerStyle={{
+                  padding: 10,
+                  paddingHorizontal: 5,
+                  borderRadius: 10,
+                  backgroundColor: 'white',
+                }}
+                placeholder="Enter Destination"
+                data={filteredFilms}
+                defaultValue={selectedValue?.Name}
+                onChangeText={text => findFilm(text)}
+                flatListProps={{
+                  style: ({
+                    borderBottomLeftRadius: 10,
+                    borderBottomRightRadius: 10,
+                    backgroundColor: 'white',
+                  }),
+                  keyExtractor: ((item, index) => item.OBJECTID.toString()),
+                  renderItem: ({ item, i }) => (
+                    <TouchableOpacity
+                      style={{ flexGrow: 1, backgroundColor: 'white' }}
+                      onPress={() => {
+                        setSelectedValue(item);
+                        setFilteredFilms([]);
+                      }}>
+                      <Text style={{ color: 'black' }}>
+                        {item.Name}
+                      </Text>
+                    </TouchableOpacity>
+                  ),
+                }}
+              />
+            </View>
+
+
+                       <View style={styles.autocompleteContainer}>
+                <Autocomplete
+                  // editable={!isLoading}
+                  autoCorrect={false}
+                  // data={
+                  //   queriedMovies?.length === 1 && queriedMovies[0].compareTitle(query)
+                  //     ? [] // Close suggestion list in case movie title matches query
+                  //     : queriedMovies
+                  // }
+                  data={filteredFilms}
+                  defaultValue={selectedValue?.Name}
+                  // onChangeText={setQuery}
+                  onChangeText={text => findFilm(text)}
+                  placeholder={'Write your Destination'}
+                  flatListProps={{
+                    keyboardShouldPersistTaps: 'always',
+                    keyExtractor: ((item, index) => item.OBJECTID.toString()),
+                    renderItem: ({ item }) => (
+                      <TouchableOpacity onPress={() => {
+                        setSelectedValue(item);
+                        setFilteredFilms([]);
+                      }}>
+                        <Text style={styles.itemText}>{item?.Name}</Text>
+                      </TouchableOpacity>
+                    ),
+                  }}
+                />
+              </View>
+
+                autocompleteContainer: {
+    flex: 1,
+    left: 0,
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    zIndex: 1,
+    padding: 5,
+  },
+  itemText: {
+    fontSize: 15,
+    margin: 2,
+  },
