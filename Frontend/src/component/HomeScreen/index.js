@@ -113,32 +113,46 @@ const index = ({ navigation }) => {
       'longitude': 72.94946667,
     },
   ];
-  const [films, setFilms] = useState(diveSitesDat);
+
+  const busRoutes = Array.from(new Set(buses?.buses.map(item => item.route).flat()));
+
+  console.log(busRoutes);
+
+  const [films, setFilms] = useState(busRoutes);
   // For Filtered Data
   const [filteredFilms, setFilteredFilms] = useState([]);
   const [filteredFirstFilms, setFilteredFirstFilms] = useState([]);
   // For Selected Data
-  const [selectedValue, setSelectedValue] = useState({});
-  const [selectedFirstValue, setSelectedFirstValue] = useState({});
+  const [selectedFirstValue, setSelectedFirstValue] = useState();
+  const [selectedValue, setSelectedValue] = useState();
+  const [detailsBusItems, setDetailsBusItems] = useState([]);
 
-  // const userFormLogin = async () => {
-  //   const loggedIn = await AsyncStorage.getItem('userData');
-  //   setLoggedIn(JSON.parse(loggedIn));
-  //   if (userauth.authenticate) {
-  //     await AsyncStorage.setItem('userData', JSON.stringify(userauth));
-  //   }
-  // };
   useEffect(() => {
     dispatch(getAllBus());
   }, []);
   const handleShowDetailsItem = () => {
+
     console.log({ selectedValue, selectedFirstValue });
+  };
+  const findFirstFilm = (text) => {
+    if (text) {
+      const newData = films.filter(route => route !== selectedValue).filter((item) => {
+        const itemDAta = item.toUpperCase();
+        const textData = text.toUpperCase();
+        return itemDAta.indexOf(textData) > -1;
+      });
+      setFilteredFirstFilms(newData);
+      //    setSelectedValue(newData);
+    } else {
+      setFilteredFirstFilms([]);
+      //  setSelectedValue(null)
+    }
   };
   const findFilm = (text) => {
     if (text) {
-      const newData = films.filter((item) => {
-        const itemDAta = item.Name ?
-          item.Name.toUpperCase()
+      const newData = films.filter(route => route !== selectedFirstValue).filter((item) => {
+        const itemDAta = item ?
+          item.toUpperCase()
           : ''.toUpperCase();
         const textData = text.toUpperCase();
         return itemDAta.indexOf(textData) > -1;
@@ -147,22 +161,6 @@ const index = ({ navigation }) => {
       //    setSelectedValue(newData);
     } else {
       setFilteredFilms([]);
-      //  setSelectedValue(null)
-    }
-  };
-  const findFirstFilm = (text) => {
-    if (text) {
-      const newData = films.filter((item) => {
-        const itemDAta = item.Name ?
-          item.Name.toUpperCase()
-          : ''.toUpperCase();
-        const textData = text.toUpperCase();
-        return itemDAta.indexOf(textData) > -1;
-      });
-      setFilteredFirstFilms(newData);
-      //    setSelectedValue(newData);
-    } else {
-      setFilteredFirstFilms([]);
       //  setSelectedValue(null)
     }
   };
@@ -273,18 +271,18 @@ const index = ({ navigation }) => {
                   //     : queriedMovies
                   // }
                   data={filteredFirstFilms}
-                  defaultValue={selectedFirstValue?.Name}
+                  defaultValue={selectedFirstValue}
                   onChangeText={text => findFirstFilm(text)}
                   placeholder="Search Location"
                   flatListProps={{
                     keyboardShouldPersistTaps: 'always',
-                    keyExtractor: ((item, index) => item.OBJECTID.toString()),
+                    keyExtractor: ((item, index) => item.toString()),
                     renderItem: ({ item }) => (
                       <TouchableOpacity onPress={() => {
                         setSelectedFirstValue(item);
                         setFilteredFirstFilms([]);
                       }}>
-                        <Text style={styles.itemText}>{item?.Name}</Text>
+                        <Text style={styles.itemText}>{item}</Text>
                       </TouchableOpacity>
                     ),
                   }}
@@ -300,19 +298,19 @@ const index = ({ navigation }) => {
                   //     : queriedMovies
                   // }
                   data={filteredFilms}
-                  defaultValue={selectedValue?.Name}
+                  defaultValue={selectedValue}
                   // onChangeText={setQuery}
                   onChangeText={text => findFilm(text)}
                   placeholder="Enter Destination"
                   flatListProps={{
                     keyboardShouldPersistTaps: 'always',
-                    keyExtractor: ((item, index) => item.OBJECTID.toString()),
+                    keyExtractor: ((item, index) => item.toString()),
                     renderItem: ({ item }) => (
                       <TouchableOpacity onPress={() => {
                         setSelectedValue(item);
                         setFilteredFilms([]);
                       }}>
-                        <Text style={styles.itemText}>{item?.Name}</Text>
+                        <Text style={styles.itemText}>{item}</Text>
                       </TouchableOpacity>
                     ),
                   }}
