@@ -192,7 +192,7 @@ const index = ({ navigation }) => {
 
         <View
           style={{
-            height: 190,
+            height: 230,
             paddingTop: 10,
             marginBottom: 15,
             paddingHorizontal: 15,
@@ -329,6 +329,26 @@ const index = ({ navigation }) => {
                 />
               </View>
             </View>
+          </View>
+          <View>
+            <TouchableOpacity>
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 16,
+                  fontWeight: '700',
+                  marginTop: 65,
+                  flexDirection: 'row',
+                  flexWrap: 'wrap',
+                  width: 100,
+                  backgroundColor: 'gray',
+                  marginLeft: 60,
+                  padding: 10,
+                  textAlign: 'center',
+                }}>
+                Search
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
 
