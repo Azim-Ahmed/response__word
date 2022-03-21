@@ -16,7 +16,7 @@ export const getAllBus = () => {
             }
 
         } catch (error) {
-            dispatch({ type: busConstants.BUS_FAILURE });
+            dispatch({ type: busConstants.BUS_FAILURE, payload: error.message });
 
         }
     };

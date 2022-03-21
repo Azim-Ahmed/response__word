@@ -1,4 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable prettier/prettier */
+// /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react-native/no-inline-styles */
@@ -26,12 +27,12 @@ import Seat from '../image/Seat.png';
 // -------------------Dimension Import------------------
 import { Dimensions } from 'react-native';
 import { getAllBus } from '../../redux/actions';
+import uuid from 'react-native-uuid';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const index = ({ navigation }) => {
   const buses = useSelector(state => state.buses);
-  const isDarkMode = useColorScheme() === 'dark';
   console.log('sssssssssssssssssssssssssss', buses.buses);
   const dispatch = useDispatch();
   const diveSitesDat = [
@@ -116,27 +117,35 @@ const index = ({ navigation }) => {
 
   const busRoutes = Array.from(new Set(buses?.buses.map(item => item.route).flat()));
 
-  console.log(busRoutes);
+  console.log({ busRoutes });
+  const updatedBusRoutes = busRoutes.map(item => {
+    const resetItem = {};
+    resetItem.Name = item;
+    resetItem.OBJECTID = uuid.v4();
+    return resetItem;
+  });
+  console.log({ updatedBusRoutes });
 
   const [films, setFilms] = useState(busRoutes);
   // For Filtered Data
-  const [filteredFilms, setFilteredFilms] = useState([]);
   const [filteredFirstFilms, setFilteredFirstFilms] = useState([]);
+  const [filteredFilms, setFilteredFilms] = useState([]);
   // For Selected Data
-  const [selectedFirstValue, setSelectedFirstValue] = useState();
-  const [selectedValue, setSelectedValue] = useState();
+  const [selectedFirstValue, setSelectedFirstValue] = useState({});
+  const [selectedValue, setSelectedValue] = useState('');
   const [detailsBusItems, setDetailsBusItems] = useState([]);
 
   useEffect(() => {
     dispatch(getAllBus());
-  }, []);
+  }, [dispatch]);
   const handleShowDetailsItem = () => {
-
-    console.log({ selectedValue, selectedFirstValue });
+    const filterdedData = buses?.buses.filter((v) => v.route.includes(selectedFirstValue) || v.route.includes(selectedValue));
+    console.log('------------------------', filterdedData.length);
+    setDetailsBusItems(filterdedData);
   };
   const findFirstFilm = (text) => {
     if (text) {
-      const newData = films.filter(route => route !== selectedValue).filter((item) => {
+      const newData = busRoutes.filter((item) => {
         const itemDAta = item.toUpperCase();
         const textData = text.toUpperCase();
         return itemDAta.indexOf(textData) > -1;
@@ -150,7 +159,7 @@ const index = ({ navigation }) => {
   };
   const findFilm = (text) => {
     if (text) {
-      const newData = films.filter(route => route !== selectedFirstValue).filter((item) => {
+      const newData = busRoutes.filter(route => route !== selectedValue).filter((item) => {
         const itemDAta = item ?
           item.toUpperCase()
           : ''.toUpperCase();
@@ -270,7 +279,7 @@ const index = ({ navigation }) => {
                   //     ? [] // Close suggestion list in case movie title matches query
                   //     : queriedMovies
                   // }
-                  data={filteredFirstFilms}
+                  data={filteredFirstFilms.length > 0 && filteredFirstFilms}
                   defaultValue={selectedFirstValue}
                   onChangeText={text => findFirstFilm(text)}
                   placeholder="Search Location"
@@ -349,72 +358,55 @@ const index = ({ navigation }) => {
           style={{ height: '54%', zIndex: -1 }}>
           {/* -------------main contente starts here */}
 
-          <View style={{ marginHorizontal: 25 }}>
-            <TouchableOpacity style={styles.Content}>
-              <Text style={styles.heading}> Track Nearby Running Buses</Text>
+          {detailsBusItems.length > 0 && detailsBusItems.map((item, indexed) => (
+            <View key={indexed} style={styles.content}>
+              <View style={styles.header}>
+                <Text style={styles.busname}> 7 No Bus
+                </Text>
+                <Text style={styles.stoppage}>
+                  22 Stopage
+                </Text>
 
+              </View>
               <View
                 style={{
                   display: 'flex',
                   flexDirection: 'row',
                   alignItems: 'center',
+
                 }}>
+
                 <Image
-                  source={Location}
+                  source={item?.image}
                   resizeMode="contain"
-                  style={styles.img}
+                  style={styles.image}
                 />
-                <View style={{ width: 230 }}>
-                  <Text style={styles.text}>
-                    See how many buses are currently running on the road near
-                    You and pick up your suitable bus among them
+                <View style={{ maxWidth: 200 }}>
+                  <Text
+                    style={styles.route}>
+                    Start: Gabtali
+
+                  </Text>
+                  <Text style={styles.route}>
+                    End: Sadarghat
                   </Text>
                 </View>
+
               </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.Content}>
-              <Text style={styles.heading}> Check Seat Availability</Text>
-
-              <View
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                }}>
-                <Image source={Seat} resizeMode="contain" style={styles.img} />
-                <View style={{ width: 230 }}>
-                  <Text style={styles.text}>
-                    Check seats are available or not for you providing by the
-                    driver
+              <View style={{
+                display: 'flex',
+                alignItems: 'flex-end',
+              }} >
+                <TouchableOpacity>
+                  <Text style={styles.details}>
+                    DETATILS
                   </Text>
-                </View>
+                </TouchableOpacity>
               </View>
-            </TouchableOpacity>
+            </View>
+          ))
+          }
 
-            <TouchableOpacity style={styles.Content}>
-              <Text style={styles.heading}> See Sorrounding places</Text>
-
-              <View
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                }}>
-                <Image
-                  source={Location}
-                  resizeMode="contain"
-                  style={styles.img}
-                />
-                <View style={{ width: 230 }}>
-                  <Text style={styles.text}>
-                    see nearby hospitals, public toilets and nearby gas station,
-                    shopping mall etc.
-                  </Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-          </View>
         </ScrollView>
 
         {/* --------------------------Footer section starts here----------- */}
@@ -538,6 +530,12 @@ const styles = StyleSheet.create({
     zIndex: 4,
     padding: 5,
   },
+  route: {
+    color: '#0F254F',
+    fontSize: 14,
+    marginBottom: 4,
+    fontWeight: '700',
+  },
   itemText: {
     fontSize: 15,
     margin: 2,
@@ -548,22 +546,52 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     borderRadius: 10,
     backgroundColor: '#fff',
-
   },
-  Content: {
-    height: 105,
-    marginVertical: 5,
+
+  details: {
+    color: 'white',
+    backgroundColor: 'green',
+    fontSize: 14,
+    marginBottom: 4,
+    fontWeight: '700',
+    padding: 5,
+    borderRadius: 7,
+  },
+  header: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  busname: {
+    color: 'green',
+    fontSize: 20,
+    marginBottom: 4,
+    fontWeight: '700',
+  },
+  stoppage: {
+    color: 'white',
+    fontSize: 15,
+    marginBottom: 4,
+    fontWeight: '700',
+    backgroundColor: 'red',
+    padding: 2,
+    borderRadius: 7,
+  },
+  content: {
+    height: 160,
+    // alignItems: 'center',
+    marginVertical: 10,
     paddingVertical: 12,
     paddingHorizontal: 12,
     shadowColor: '#000',
-    // shadowOffset: { width: 3, height: 3 },
+    shadowOffset: { width: 3, height: 3 },
     shadowOpacity: 3,
     shadowRadius: 7,
     elevation: 3,
     borderRadius: 15,
     backgroundColor: 'white',
   },
-
   heading: {
     color: 'green',
     fontSize: 18,
@@ -578,6 +606,14 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     marginTop: 0,
     marginRight: 10,
+  },
+
+  image: {
+    width: 80,
+    height: 70,
+    aspectRatio: 1,
+    marginTop: 0,
+    marginRight: 18,
   },
   text: {
     // color: '#0F254F',

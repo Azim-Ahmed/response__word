@@ -14,7 +14,7 @@ import {
     Button,
     ImageBackground,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
 } from 'react-native';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -42,7 +42,6 @@ import Achim from '../image/Buses/Achim.jpg';
 import Agroduth from '../image/Buses/Agroduth.jpg';
 import Airport from '../image/Buses/Airport.jpg';
 import Akik from '../image/Buses/Akik.jpg';
-
 
 // -------------------Dimension Import------------------
 import { Dimensions } from 'react-native';
@@ -72,15 +71,15 @@ const index = ({ navigation }) => {
     return (
         <>
             {/* <StatusBar barStyle={isDarkMode ? '#fff' : 'dark-content'} /> */}
-            <View style={{
-                // backgroundStyle,
-                height: '100%',
-                marginVertical: 35,
-                backgroundColor: 'white'
-
-            }}>
-                <View style={
-                    {
+            <View
+                style={{
+                    // backgroundStyle,
+                    height: '100%',
+                    marginVertical: 35,
+                    backgroundColor: 'white',
+                }}>
+                <View
+                    style={{
                         height: 50,
                         marginVertical: 10,
                         marginHorizontal: 20,
@@ -89,9 +88,8 @@ const index = ({ navigation }) => {
                         justifyContent: 'space-between',
                         alignItems: 'center',
                         backgroundColor: 'whitesmoke',
-                        borderRadius: 20
+                        borderRadius: 20,
                     }}>
-
                     {/* -----------------Profile avatar starts here----------------- */}
                     <View
                         style={{
@@ -100,7 +98,6 @@ const index = ({ navigation }) => {
                             overflow: 'hidden',
                             borderRadius: 50,
                             position: 'relative',
-
                         }}>
                         <TouchableOpacity>
                             <Image
@@ -109,17 +106,16 @@ const index = ({ navigation }) => {
                                 style={{ width: '100%', height: undefined, aspectRatio: 1 }}
                             />
                         </TouchableOpacity>
-
                     </View>
 
                     {/* ------------------------------------search bar starts here---------- */}
-                    <View >
-                        <TextInput style={{ height: 42 }}
+                    <View>
+                        <TextInput
+                            style={{ height: 42 }}
                             placeholder="Enter Bus name You Want to see"
                             type="text"
                         />
                     </View>
-
 
                     {/* ------------------------------------Settings menu starts here --------------*/}
                     <View
@@ -129,7 +125,6 @@ const index = ({ navigation }) => {
                             overflow: 'hidden',
                             borderRadius: 50,
                             position: 'relative',
-
                         }}>
                         <TouchableOpacity>
                             <Image
@@ -141,360 +136,232 @@ const index = ({ navigation }) => {
                                     overflow: 'hidden',
                                     borderRadius: 70,
                                     position: 'relative',
-                                    backgroundColor: '#5C5F69'
+                                    backgroundColor: '#5C5F69',
                                 }}
                             />
                         </TouchableOpacity>
                     </View>
-
-
                 </View>
 
                 {/* --------------------------------contente section starts here */}
                 <ScrollView
                     contentInsetAdjustmentBehavior="automatic"
                     style={{ height: '75%' }}>
-
                     {/* -------------main contente starts here */}
 
-
                     <View style={{ marginHorizontal: 37 }}>
-
-
-
                         <View style={styles.content}>
                             <View style={styles.header}>
-                                <Text style={styles.busname}> 7 No Bus
-                                </Text>
-                                <Text style={styles.stoppage}>
-                                    22 Stopage
-                                </Text>
-
+                                <Text style={styles.busname}> 7 No Bus</Text>
+                                <Text style={styles.stoppage}>22 Stopage</Text>
                             </View>
                             <View
                                 style={{
                                     display: 'flex',
                                     flexDirection: 'row',
                                     alignItems: 'center',
-
                                 }}>
-
-                                <Image
-                                    source={bus7}
-                                    resizeMode="contain"
-                                    style={styles.img}
-                                />
+                                <Image source={bus7} resizeMode="contain" style={styles.img} />
                                 <View style={{ maxWidth: 200 }}>
-                                    <Text
-                                        style={styles.route}>
-                                        Start: Gabtali
-
-                                    </Text>
-                                    <Text style={styles.route}>
-                                        End: Sadarghat
-                                    </Text>
+                                    <Text style={styles.route}>Start: Gabtali</Text>
+                                    <Text style={styles.route}>End: Sadarghat</Text>
                                 </View>
-
                             </View>
-                            <View style={{
-                                display: 'flex',
-                                // textAlign: 'right'
-                                alignItems: 'flex-end'
-                            }} >
+                            <View
+                                style={{
+                                    display: 'flex',
+                                    // textAlign: 'right'
+                                    alignItems: 'flex-end',
+                                }}>
                                 <TouchableOpacity>
-                                    <Text style={styles.details}>
-                                        DETATILS
-                                    </Text>
+                                    <Text style={styles.details}>DETATILS</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
 
                         <View style={styles.content}>
                             <View style={styles.header}>
-                                <Text style={styles.busname}> 8 No Bus
-                                </Text>
-                                <Text style={styles.stoppage}>
-                                    21 Stopage
-                                </Text>
-
+                                <Text style={styles.busname}> 8 No Bus</Text>
+                                <Text style={styles.stoppage}>21 Stopage</Text>
                             </View>
                             <View
                                 style={{
                                     display: 'flex',
                                     flexDirection: 'row',
                                     alignItems: 'center',
-
                                 }}>
-
-                                <Image
-                                    source={bus8}
-                                    resizeMode="contain"
-                                    style={styles.img}
-                                />
+                                <Image source={bus8} resizeMode="contain" style={styles.img} />
                                 <View style={{ maxWidth: 200 }}>
-                                    <Text
-                                        style={styles.route}>
-                                        Start: Jatrabari
-
-                                    </Text>
-                                    <Text style={styles.route}>
-                                        End: Gabtali
-                                    </Text>
+                                    <Text style={styles.route}>Start: Jatrabari</Text>
+                                    <Text style={styles.route}>End: Gabtali</Text>
                                 </View>
-
                             </View>
-                            <View style={{
-                                display: 'flex',
-                                // textAlign: 'right'
-                                alignItems: 'flex-end'
-                            }} >
+                            <View
+                                style={{
+                                    display: 'flex',
+                                    // textAlign: 'right'
+                                    alignItems: 'flex-end',
+                                }}>
                                 <TouchableOpacity>
-                                    <Text style={styles.details}>
-                                        DETATILS
-                                    </Text>
+                                    <Text style={styles.details}>DETATILS</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
 
                         <View style={styles.content}>
                             <View style={styles.header}>
-                                <Text style={styles.busname}> 9 No Bus
-                                </Text>
-                                <Text style={styles.stoppage}>
-                                    21 Stopage
-                                </Text>
-
+                                <Text style={styles.busname}> 9 No Bus</Text>
+                                <Text style={styles.stoppage}>21 Stopage</Text>
                             </View>
                             <View
                                 style={{
                                     display: 'flex',
                                     flexDirection: 'row',
                                     alignItems: 'center',
-
                                 }}>
-
-                                <Image
-                                    source={bus8}
-                                    resizeMode="contain"
-                                    style={styles.img}
-                                />
+                                <Image source={bus8} resizeMode="contain" style={styles.img} />
                                 <View style={{ maxWidth: 200 }}>
-                                    <Text
-                                        style={styles.route}>
-                                        Start: Jatrabari
-
-                                    </Text>
-                                    <Text style={styles.route}>
-                                        End: Gabtali
-                                    </Text>
+                                    <Text style={styles.route}>Start: Jatrabari</Text>
+                                    <Text style={styles.route}>End: Gabtali</Text>
                                 </View>
-
                             </View>
-                            <View style={{
-                                display: 'flex',
-                                // textAlign: 'right'
-                                alignItems: 'flex-end'
-                            }} >
+                            <View
+                                style={{
+                                    display: 'flex',
+                                    // textAlign: 'right'
+                                    alignItems: 'flex-end',
+                                }}>
                                 <TouchableOpacity>
-                                    <Text style={styles.details}>
-                                        DETATILS
-                                    </Text>
+                                    <Text style={styles.details}>DETATILS</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
 
                         <View style={styles.content}>
                             <View style={styles.header}>
-                                <Text style={styles.busname}> Achim Poribahan
-                                </Text>
-                                <Text style={styles.stoppage}>
-                                    34 Stopage
-                                </Text>
-
+                                <Text style={styles.busname}> Achim Poribahan</Text>
+                                <Text style={styles.stoppage}>34 Stopage</Text>
                             </View>
                             <View
                                 style={{
                                     display: 'flex',
                                     flexDirection: 'row',
                                     alignItems: 'center',
-
                                 }}>
-
-                                <Image
-                                    source={Achim}
-                                    resizeMode="contain"
-                                    style={styles.img}
-                                />
+                                <Image source={Achim} resizeMode="contain" style={styles.img} />
                                 <View style={{ maxWidth: 200 }}>
-                                    <Text
-                                        style={styles.route}>
-                                        Start: Gabtali
-
-                                    </Text>
-                                    <Text style={styles.route}>
-                                        End: Demra Staff Quarter
-                                    </Text>
+                                    <Text style={styles.route}>Start: Gabtali</Text>
+                                    <Text style={styles.route}>End: Demra Staff Quarter</Text>
                                 </View>
-
                             </View>
-                            <View style={{
-                                display: 'flex',
-                                // textAlign: 'right'
-                                alignItems: 'flex-end'
-                            }} >
+                            <View
+                                style={{
+                                    display: 'flex',
+                                    // textAlign: 'right'
+                                    alignItems: 'flex-end',
+                                }}>
                                 <TouchableOpacity>
-                                    <Text style={styles.details}>
-                                        DETATILS
-                                    </Text>
+                                    <Text style={styles.details}>DETATILS</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
 
                         <View style={styles.content}>
                             <View style={styles.header}>
-                                <Text style={styles.busname}> Agraduth
-                                </Text>
-                                <Text style={styles.stoppage}>
-                                    20 Stopage
-                                </Text>
-
+                                <Text style={styles.busname}> Agraduth</Text>
+                                <Text style={styles.stoppage}>20 Stopage</Text>
                             </View>
                             <View
                                 style={{
                                     display: 'flex',
                                     flexDirection: 'row',
                                     alignItems: 'center',
-
                                 }}>
-
                                 <Image
                                     source={Agroduth}
                                     resizeMode="contain"
                                     style={styles.img}
                                 />
                                 <View style={{ maxWidth: 200 }}>
-                                    <Text
-                                        style={styles.route}>
-                                        Start: Savar
-
-                                    </Text>
-                                    <Text style={styles.route}>
-                                        End: NotunBazar
-                                    </Text>
+                                    <Text style={styles.route}>Start: Savar</Text>
+                                    <Text style={styles.route}>End: NotunBazar</Text>
                                 </View>
-
                             </View>
-                            <View style={{
-                                display: 'flex',
-                                // textAlign: 'right'
-                                alignItems: 'flex-end'
-                            }} >
+                            <View
+                                style={{
+                                    display: 'flex',
+                                    // textAlign: 'right'
+                                    alignItems: 'flex-end',
+                                }}>
                                 <TouchableOpacity>
-                                    <Text style={styles.details}>
-                                        DETATILS
-                                    </Text>
+                                    <Text style={styles.details}>DETATILS</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
 
                         <View style={styles.content}>
                             <View style={styles.header}>
-                                <Text style={styles.busname}> Airport Bangladesh
-                                </Text>
-                                <Text style={styles.stoppage}>
-                                    28 Stopage
-                                </Text>
-
+                                <Text style={styles.busname}> Airport Bangladesh</Text>
+                                <Text style={styles.stoppage}>28 Stopage</Text>
                             </View>
                             <View
                                 style={{
                                     display: 'flex',
                                     flexDirection: 'row',
                                     alignItems: 'center',
-
                                 }}>
-
                                 <Image
                                     source={Airport}
                                     resizeMode="contain"
                                     style={styles.img}
                                 />
                                 <View style={{ maxWidth: 200 }}>
-                                    <Text
-                                        style={styles.route}>
-                                        Start: Fulbaria
-
-                                    </Text>
-                                    <Text style={styles.route}>
-                                        End: Abdullahpur
-                                    </Text>
+                                    <Text style={styles.route}>Start: Fulbaria</Text>
+                                    <Text style={styles.route}>End: Abdullahpur</Text>
                                 </View>
-
                             </View>
-                            <View style={{
-                                display: 'flex',
-                                // textAlign: 'right'
-                                alignItems: 'flex-end'
-                            }} >
+                            <View
+                                style={{
+                                    display: 'flex',
+                                    // textAlign: 'right'
+                                    alignItems: 'flex-end',
+                                }}>
                                 <TouchableOpacity>
-                                    <Text style={styles.details}>
-                                        DETATILS
-                                    </Text>
+                                    <Text style={styles.details}>DETATILS</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
 
                         <View style={styles.content}>
                             <View style={styles.header}>
-                                <Text style={styles.busname}> Akik
-                                </Text>
-                                <Text style={styles.stoppage}>
-                                    19 Stopage
-                                </Text>
-
+                                <Text style={styles.busname}> Akik</Text>
+                                <Text style={styles.stoppage}>19 Stopage</Text>
                             </View>
                             <View
                                 style={{
                                     display: 'flex',
                                     flexDirection: 'row',
                                     alignItems: 'center',
-
                                 }}>
-
-                                <Image
-                                    source={Akik}
-                                    resizeMode="contain"
-                                    style={styles.img}
-                                />
+                                <Image source={Akik} resizeMode="contain" style={styles.img} />
                                 <View style={{ maxWidth: 200 }}>
-                                    <Text
-                                        style={styles.route}>
-                                        Start: Ansar Camp
-
-                                    </Text>
-                                    <Text style={styles.route}>
-                                        End: Uttar Badda
-                                    </Text>
+                                    <Text style={styles.route}>Start: Ansar Camp</Text>
+                                    <Text style={styles.route}>End: Uttar Badda</Text>
                                 </View>
-
                             </View>
-                            <View style={{
-                                display: 'flex',
-                                // textAlign: 'right'
-                                alignItems: 'flex-end'
-                            }} >
+                            <View
+                                style={{
+                                    display: 'flex',
+                                    // textAlign: 'right'
+                                    alignItems: 'flex-end',
+                                }}>
                                 <TouchableOpacity>
-                                    <Text style={styles.details}>
-                                        DETATILS
-                                    </Text>
+                                    <Text style={styles.details}>DETATILS</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
-
                     </View>
-
                 </ScrollView>
-
 
                 {/* --------------------------Footer section starts here----------- */}
                 <View
@@ -508,13 +375,11 @@ const index = ({ navigation }) => {
                         // marginVertical: 5,
                         paddingHorizontal: 30,
                         paddingVertical: 5,
-                        bottom: 0
+                        bottom: 0,
                     }}>
-
                     {/* --------------------------------Home button------------- */}
 
-
-                    <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')} >
+                    <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
                         <View>
                             <Image
                                 source={HomeImg}
@@ -548,7 +413,7 @@ const index = ({ navigation }) => {
                                     width: 40,
                                     height: 40,
                                     borderRadius: 50,
-                                    marginLeft: 9
+                                    marginLeft: 9,
                                 }}
                             />
                             <Text
@@ -565,7 +430,7 @@ const index = ({ navigation }) => {
 
                     {/* ----------------------Bus Details starts here------------- */}
 
-                    <TouchableOpacity >
+                    <TouchableOpacity>
                         <View>
                             <Image
                                 source={bus}
@@ -574,7 +439,7 @@ const index = ({ navigation }) => {
                                     width: 40,
                                     height: 40,
                                     borderRadius: 50,
-                                    marginLeft: 9
+                                    marginLeft: 9,
                                 }}
                             />
                             <Text
@@ -583,25 +448,19 @@ const index = ({ navigation }) => {
                                     fontSize: 12,
                                     fontWeight: '700',
                                     marginTop: 5,
-                                }} >
+                                }}>
                                 Bus Details
                             </Text>
                         </View>
                     </TouchableOpacity>
-
                 </View>
-
             </View>
-
-
         </>
     );
 };
 
 const styles = StyleSheet.create({
-
     content: {
-
         height: 160,
 
         // alignItems: 'center',
@@ -621,7 +480,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
     },
 
     busname: {
@@ -638,8 +497,7 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         backgroundColor: 'red',
         padding: 2,
-        borderRadius: 7
-
+        borderRadius: 7,
     },
 
     img: {
@@ -664,10 +522,8 @@ const styles = StyleSheet.create({
         marginBottom: 4,
         fontWeight: '700',
         padding: 5,
-        borderRadius: 7
-
-    }
-
+        borderRadius: 7,
+    },
 });
 
 export default index;
