@@ -33,7 +33,7 @@ const windowHeight = Dimensions.get('window').height;
 
 const index = ({ navigation }) => {
   const buses = useSelector(state => state.buses);
-  console.log('sssssssssssssssssssssssssss', buses.buses);
+  // console.log('sssssssssssssssssssssssssss', buses.buses);
   const dispatch = useDispatch();
   const diveSitesDat = [
     {
@@ -117,21 +117,21 @@ const index = ({ navigation }) => {
 
   const busRoutes = Array.from(new Set(buses?.buses.map(item => item.route).flat()));
 
-  console.log({ busRoutes });
+  // console.log({ busRoutes });
   const updatedBusRoutes = busRoutes.map(item => {
     const resetItem = {};
     resetItem.Name = item;
     resetItem.OBJECTID = uuid.v4();
     return resetItem;
   });
-  console.log({ updatedBusRoutes });
+  // console.log({ updatedBusRoutes });
 
   const [films, setFilms] = useState(busRoutes);
   // For Filtered Data
   const [filteredFirstFilms, setFilteredFirstFilms] = useState([]);
   const [filteredFilms, setFilteredFilms] = useState([]);
   // For Selected Data
-  const [selectedFirstValue, setSelectedFirstValue] = useState({});
+  const [selectedFirstValue, setSelectedFirstValue] = useState('');
   const [selectedValue, setSelectedValue] = useState('');
   const [detailsBusItems, setDetailsBusItems] = useState([]);
 
@@ -140,12 +140,13 @@ const index = ({ navigation }) => {
   }, [dispatch]);
   const handleShowDetailsItem = () => {
     const filterdedData = buses?.buses.filter((v) => v.route.includes(selectedFirstValue) || v.route.includes(selectedValue));
-    console.log('------------------------', filterdedData.length);
-    setDetailsBusItems(filterdedData);
+    console.log('------------------------', filterdedData);
+    const setData = [...new Set(filterdedData)];
+    setDetailsBusItems(setData);
   };
   const findFirstFilm = (text) => {
     if (text) {
-      const newData = busRoutes.filter((item) => {
+      const newData = busRoutes.filter(route => route !== selectedFirstValue).filter((item) => {
         const itemDAta = item.toUpperCase();
         const textData = text.toUpperCase();
         return itemDAta.indexOf(textData) > -1;
@@ -361,10 +362,10 @@ const index = ({ navigation }) => {
           {detailsBusItems.length > 0 && detailsBusItems.map((item, indexed) => (
             <View key={indexed} style={styles.content}>
               <View style={styles.header}>
-                <Text style={styles.busname}> 7 No Bus
+                <Text style={styles.busname}> {item?.name}
                 </Text>
                 <Text style={styles.stoppage}>
-                  22 Stopage
+                  {item?.route.length} Stopage
                 </Text>
 
               </View>
@@ -384,11 +385,11 @@ const index = ({ navigation }) => {
                 <View style={{ maxWidth: 200 }}>
                   <Text
                     style={styles.route}>
-                    Start: Gabtali
+                    Start: {item?.startFrom}
 
                   </Text>
                   <Text style={styles.route}>
-                    End: Sadarghat
+                    End: {item?.endAt}
                   </Text>
                 </View>
 
