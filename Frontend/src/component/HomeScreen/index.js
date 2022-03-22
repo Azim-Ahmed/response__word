@@ -378,7 +378,7 @@ const index = ({ navigation }) => {
                 }}>
 
                 <Image
-                  source={item?.image}
+                  source={{ uri: item?.image }}
                   resizeMode="contain"
                   style={styles.image}
                 />
